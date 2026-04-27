@@ -1,0 +1,1558 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ateneo Latin America · 2026</title>
+    <meta name="description" content="Un club de curiosos unidos por América Latina: su historia, cultura, arte y gente.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+/* ─── RESET ──────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+    /* Surfaces — warm white, not cold */
+    --bg:         #fafaf8;
+    --bg2:        #f4f2ee;
+    --bg3:        #ede9e3;
+
+    /* Brand blues */
+    --blue:       #0d3a6b;
+    --blue-m:     #1756a0;
+    --blue-l:     #c8d9ee;
+    --blue-deep:  #08253f;
+
+    /* Gold accent — institutional warmth */
+    --gold:       #b5945a;
+    --gold-l:     #d4b483;
+
+    /* Text — warm tones */
+    --white:      #ffffff;
+    --text-dark:  #1a1814;
+    --text-mid:   #5a5650;
+    --text-light: #9a958e;
+
+    /* Borders */
+    --border:      rgba(26,24,20,0.09);
+    --border-gold: rgba(181,148,90,0.25);
+
+    /* Fonts — 3-tier system */
+    --fh: 'Barlow Condensed', sans-serif;   /* display headings */
+    --fb: 'Cormorant Garamond', Georgia, serif; /* body, prose */
+    --fu: 'Inter', system-ui, sans-serif;   /* utility: labels, nav, metadata */
+
+    --t: 0.3s ease;
+}
+
+html { scroll-behavior: smooth; }
+body {
+    background: var(--bg);
+    color: var(--text-dark);
+    font-family: var(--fb);
+    font-weight: 300;
+    line-height: 1.65;
+    letter-spacing: 0.01em;
+    overflow-x: hidden;
+}
+
+/* ─── NAV ─────────────────────────────────────────────────── */
+nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 0 5vw;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: background var(--t), box-shadow var(--t);
+}
+nav.scrolled {
+    background: rgba(250,250,248,0.88);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    box-shadow: 0 1px 0 rgba(181,148,90,0.15), 0 4px 20px rgba(26,24,20,0.06);
+}
+.nav-brand {
+    font-family: var(--fu);
+    font-weight: 500;
+    font-size: 0.72rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--blue);
+    text-decoration: none;
+    opacity: 0;
+    transition: opacity var(--t);
+}
+nav.scrolled .nav-brand { opacity: 1; }
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 2.5rem;
+    list-style: none;
+}
+.nav-links a {
+    font-family: var(--fu);
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-dark);
+    text-decoration: none;
+    opacity: 0.5;
+    transition: opacity var(--t);
+}
+.nav-links a:hover { opacity: 1; }
+
+.burger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    padding: 6px;
+    background: none;
+    border: none;
+}
+.burger span {
+    display: block;
+    width: 22px;
+    height: 1.5px;
+    background: var(--blue);
+    transition: var(--t);
+}
+
+/* ─── HERO ────────────────────────────────────────────────── */
+.hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    text-align: left;
+    padding: 120px 8vw 10vh 10vw;
+    position: relative;
+    overflow: hidden;
+    background: var(--bg);
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+        radial-gradient(ellipse 70% 60% at 65% 40%, rgba(181,148,90,0.05) 0%, transparent 70%),
+        radial-gradient(ellipse 50% 80% at 10% 90%, rgba(13,58,107,0.06) 0%, transparent 60%);
+    pointer-events: none;
+}
+
+/* ─── HERO BG PHOTO ─────────────────────────────────────────── */
+.hero-photo-bg {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 52%;
+    height: 100%;
+    z-index: 0;
+    overflow: hidden;
+    clip-path: polygon(
+        20% 0%,
+        100% 0%,
+        100% 100%,
+        0% 100%,
+        12% 74%,
+        22% 50%,
+        8% 24%
+    );
+}
+.hero-photo-bg img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 20% 10%;
+    display: block;
+    filter: saturate(0.82) brightness(0.92) contrast(1.04);
+}
+.hero-photo-bg::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        to right,
+        rgba(250,250,248,0.55) 0%,
+        rgba(250,250,248,0.15) 35%,
+        transparent 65%
+    );
+    pointer-events: none;
+}
+@media (max-width: 680px) {
+    .hero-photo-bg { display: none; }
+}
+
+/* Coin — fixed to viewport, always follows scroll */
+.logo-coin-wrap {
+    position: fixed;
+    top: 80px;
+    right: 5vw;
+    will-change: transform;
+    z-index: 100;
+}
+
+.logo-coin {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--white);
+    box-shadow:
+        0 0 0 8px rgba(181,148,90,0.06),
+        0 0 0 16px rgba(181,148,90,0.03),
+        0 24px 60px rgba(13,58,107,0.12);
+    overflow: hidden;
+}
+
+.logo-coin-inner {
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.logo-svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+    flex-shrink: 0;
+}
+
+.hero-scroll-hint {
+    position: absolute;
+    bottom: 2.5rem;
+    left: 10vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: var(--fu);
+    font-size: 0.65rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--text-light);
+}
+.scroll-line {
+    width: 1px;
+    height: 36px;
+    background: linear-gradient(to bottom, var(--gold), transparent);
+    animation: line-pulse 2s ease-in-out infinite;
+}
+@keyframes line-pulse {
+    0%, 100% { opacity: 0.3; transform: scaleY(1); }
+    50% { opacity: 0.9; transform: scaleY(1.1); }
+}
+
+/* ─── HERO TEXT ─────────────────────────────────────────────── */
+.hero-text { max-width: 640px; position: relative; z-index: 2; }
+
+.hero-eyebrow {
+    font-family: var(--fu);
+    font-size: 0.68rem;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1.2rem;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+.hero-eyebrow::before {
+    content: '';
+    display: block;
+    width: 28px;
+    height: 1px;
+    background: var(--gold);
+    opacity: 0.7;
+}
+
+.hero h1 {
+    font-family: var(--fh);
+    font-weight: 800;
+    font-size: clamp(3.2rem, 8vw, 7rem);
+    letter-spacing: -0.01em;
+    line-height: 0.92;
+    color: var(--blue);
+    text-transform: uppercase;
+    margin-bottom: 2.2rem;
+}
+.hero h1 em {
+    font-style: normal;
+    color: var(--gold);
+}
+
+.hero-meta {
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+    font-family: var(--fu);
+    font-size: 0.75rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-mid);
+}
+.hero-meta-dot {
+    width: 3px;
+    height: 3px;
+    border-radius: 50%;
+    background: var(--gold);
+    opacity: 0.7;
+}
+
+/* ─── SECTION BASE ──────────────────────────────────────────── */
+section {
+    padding: 120px 5vw;
+    border-top: 1px solid var(--border-gold);
+}
+section:nth-child(even) { background: var(--bg2); }
+
+.section-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.eyebrow {
+    font-family: var(--fu);
+    font-size: 0.68rem;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1.4rem;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+.eyebrow::after {
+    content: '';
+    display: block;
+    flex: 0 0 32px;
+    height: 1px;
+    background: var(--gold);
+    opacity: 0.5;
+}
+
+h2 {
+    font-family: var(--fh);
+    font-weight: 800;
+    font-size: clamp(2.2rem, 4.5vw, 3.6rem);
+    letter-spacing: -0.01em;
+    text-transform: uppercase;
+    color: var(--blue);
+    line-height: 0.95;
+}
+
+/* ─── DETAILS SECTION ───────────────────────────────────────── */
+.details {
+    background: linear-gradient(135deg, var(--blue) 0%, var(--blue-deep) 100%) !important;
+    color: var(--white);
+    position: relative;
+}
+.details::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    opacity: 0.55;
+}
+.details .eyebrow { color: rgba(255,255,255,0.4); }
+.details .eyebrow::after { background: rgba(255,255,255,0.2); }
+.details h2 { color: var(--white); }
+
+.details-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    border-top: 1px solid rgba(255,255,255,0.1);
+    margin-top: 5rem;
+}
+.detail-item {
+    padding: 3.5rem 0 3.5rem 3rem;
+    border-right: 1px solid rgba(255,255,255,0.1);
+}
+.detail-item:last-child { border-right: none; }
+.detail-item:first-child { padding-left: 0; }
+
+.detail-number {
+    font-family: var(--fh);
+    font-weight: 800;
+    font-size: clamp(4rem, 8vw, 7rem);
+    color: var(--gold-l);
+    line-height: 0.9;
+    margin-bottom: 0.7rem;
+}
+/* Year: outline-only — monumental restraint */
+.detail-item:nth-child(2) .detail-number {
+    -webkit-text-stroke: 1.5px rgba(212,180,131,0.6);
+    color: transparent;
+    font-size: clamp(3rem, 6vw, 5.5rem);
+}
+.detail-label {
+    font-family: var(--fu);
+    font-size: 0.68rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.35);
+}
+
+/* ─── SOBRE SECTION ─────────────────────────────────────────── */
+#sobre {
+    padding: 160px 5vw;
+}
+.sobre-layout {
+    display: grid;
+    grid-template-columns: 1fr 1.6fr;
+    gap: 6rem;
+    align-items: start;
+    margin-top: 3.5rem;
+}
+.sobre-left {
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+}
+.sobre-pull {
+    font-family: var(--fh);
+    font-weight: 700;
+    font-size: clamp(1.6rem, 2.5vw, 2.2rem);
+    text-transform: uppercase;
+    color: var(--blue);
+    line-height: 1.15;
+    letter-spacing: 0.01em;
+    border-left: 2px solid var(--gold);
+    padding-left: 1.8rem;
+}
+.sobre-img {
+    width: 100%;
+    aspect-ratio: 4/3;
+    overflow: hidden;
+    position: relative;
+}
+.sobre-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    filter: saturate(0.78) brightness(0.93);
+    transition: transform 0.7s ease;
+}
+.sobre-img:hover img { transform: scale(1.04); }
+.sobre-body {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+.sobre-body p {
+    font-family: var(--fb);
+    font-size: clamp(1rem, 1.6vw, 1.15rem);
+    font-weight: 300;
+    color: var(--text-mid);
+    line-height: 1.85;
+    letter-spacing: 0.015em;
+}
+
+/* ─── COMO TRABAJAMOS ───────────────────────────────────────── */
+#como {
+    padding: 140px 5vw;
+}
+.como-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    margin-top: 4.5rem;
+    border: 1px solid var(--border-gold);
+}
+.como-card {
+    padding: 3rem 2.5rem 3.5rem;
+    background: var(--bg);
+    border-right: 1px solid var(--border-gold);
+    transition: background var(--t);
+}
+.como-card:last-child { border-right: none; }
+.como-card:hover { background: var(--bg2); }
+.como-num {
+    font-family: var(--fh);
+    font-weight: 800;
+    font-size: 3.5rem;
+    line-height: 1;
+    color: var(--gold);
+    opacity: 0.35;
+    margin-bottom: 1.5rem;
+}
+.como-title {
+    font-family: var(--fh);
+    font-weight: 700;
+    font-size: 1.25rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--blue);
+    margin-bottom: 1rem;
+}
+.como-desc {
+    font-family: var(--fb);
+    font-size: 1rem;
+    font-weight: 300;
+    color: var(--text-mid);
+    line-height: 1.8;
+}
+
+/* ─── FOTO GRID ──────────────────────────────────────────────── */
+#fotos {
+    padding: 0;
+    border-top: none;
+    background: var(--bg3) !important;
+}
+.foto-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: auto auto;
+    gap: 3px;
+}
+.foto-item {
+    aspect-ratio: 4/3;
+    overflow: hidden;
+    background: var(--bg2);
+    position: relative;
+}
+.foto-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.6s ease;
+    filter: saturate(0.85);
+}
+.foto-item:hover img {
+    transform: scale(1.04);
+    filter: saturate(1);
+}
+/* Placeholder when no image */
+.foto-item.placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--fu);
+    font-size: 0.65rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-light);
+    opacity: 0.5;
+}
+
+/* ─── CONTACT SECTION ───────────────────────────────────────── */
+.contact {
+    text-align: center;
+    padding: 140px 5vw 160px;
+}
+.contact h2 {
+    margin-bottom: 1.2rem;
+}
+.contact-sub {
+    font-family: var(--fb);
+    font-size: 1.15rem;
+    font-weight: 300;
+    color: var(--text-mid);
+    margin-bottom: 4rem;
+    letter-spacing: 0.01em;
+    font-style: italic;
+}
+
+.btn-primary {
+    display: inline-block;
+    padding: 1.1rem 4rem;
+    background: var(--gold);
+    color: var(--white);
+    font-family: var(--fu);
+    font-weight: 500;
+    font-size: 0.8rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border-radius: 0;
+    position: relative;
+    overflow: hidden;
+    transition: background var(--t), transform var(--t), box-shadow var(--t);
+}
+.btn-primary::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(105deg, transparent 40%, rgba(255,255,255,0.14) 50%, transparent 60%);
+    transform: translateX(-100%);
+    transition: transform 0.55s ease;
+}
+.btn-primary:hover {
+    background: var(--gold-l);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 32px rgba(181,148,90,0.3);
+}
+.btn-primary:hover::after {
+    transform: translateX(100%);
+}
+
+.contact-social {
+    margin-top: 2.8rem;
+    font-family: var(--fu);
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-light);
+}
+.contact-social a {
+    color: var(--blue-m);
+    text-decoration: none;
+    font-weight: 500;
+}
+.contact-social a:hover { text-decoration: underline; }
+
+.invite-note {
+    font-family: var(--fb);
+    font-size: clamp(1rem, 1.4vw, 1.1rem);
+    font-weight: 300;
+    font-style: italic;
+    color: var(--text-light);
+    margin-bottom: 3rem;
+    letter-spacing: 0.01em;
+}
+
+/* ─── FEATURE PHOTO ─────────────────────────────────────────── */
+.feature-photo {
+    width: 100%;
+    height: 40vh;
+    min-height: 260px;
+    overflow: hidden;
+    position: relative;
+    background: var(--bg3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.feature-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    filter: saturate(0.82);
+    transition: transform 0.8s ease;
+}
+.feature-photo:hover img { transform: scale(1.025); }
+.feature-photo-placeholder {
+    font-family: var(--fu);
+    font-size: 0.65rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--text-light);
+    opacity: 0.45;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.6rem;
+}
+.feature-photo-placeholder::before {
+    content: '';
+    display: block;
+    width: 1px;
+    height: 32px;
+    background: var(--gold);
+    opacity: 0.4;
+}
+
+/* ─── FOOTER ────────────────────────────────────────────────── */
+footer {
+    background: var(--blue-deep);
+    color: rgba(255,255,255,0.3);
+    text-align: center;
+    padding: 3.2rem 5vw 2.8rem;
+    font-family: var(--fu);
+    font-size: 0.68rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+}
+.footer-ornament {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.2rem;
+    margin-bottom: 1.6rem;
+}
+.footer-rule {
+    display: block;
+    width: 52px;
+    height: 1px;
+    background: rgba(181,148,90,0.28);
+}
+.footer-sun {
+    color: rgba(181,148,90,0.55);
+    font-size: 0.75rem;
+    letter-spacing: 0;
+}
+.footer-main {
+    margin-bottom: 0.55rem;
+}
+.footer-main span { color: rgba(255,255,255,0.65); }
+.footer-sub {
+    font-size: 0.58rem;
+    opacity: 0.4;
+    letter-spacing: 0.18em;
+    margin-top: 0.4rem;
+}
+
+/* ─── FADE-IN ───────────────────────────────────────────────── */
+.fade {
+    opacity: 0;
+    transform: translateY(22px);
+    transition: opacity 0.75s ease, transform 0.75s ease;
+}
+.fade.in {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Staggered delays in details grid */
+.details-grid .detail-item:nth-child(1).fade { transition-delay: 0ms; }
+.details-grid .detail-item:nth-child(2).fade { transition-delay: 120ms; }
+.details-grid .detail-item:nth-child(3).fade { transition-delay: 240ms; }
+
+/* ─── 1+2: SCRAMBLE + STAGGER ────────────────────────────────── */
+.sl { display: inline; }
+
+/* ─── 3: TYPEWRITER ─────────────────────────────────────────── */
+.tw {
+    display: inline-block;
+    overflow: hidden;
+    white-space: nowrap;
+    width: 0;
+    transition: none;
+}
+.tw::after {
+    content: '|';
+    color: var(--gold);
+    opacity: 0;
+    animation: blink 0.8s step-end infinite;
+}
+.tw.active::after { opacity: 1; }
+.tw.done::after { display: none; }
+@keyframes blink {
+    50% { opacity: 0; }
+}
+
+/* ─── 4: PARALLAX DRIFT ─────────────────────────────────────── */
+.hero h1 em {
+    display: inline-block;
+    will-change: transform;
+}
+
+/* ─── 5: MARQUEE ─────────────────────────────────────────────── */
+.marquee-wrap {
+    overflow: hidden;
+    display: flex;
+    width: 100%;
+    border-top: 1px solid var(--border-gold);
+    border-bottom: 1px solid var(--border-gold);
+    background: var(--bg2);
+    padding: 1rem 0;
+    user-select: none;
+}
+.marquee-track {
+    display: flex;
+    align-items: center;
+    gap: 1.8rem;
+    padding-right: 1.8rem;
+    white-space: nowrap;
+    flex-shrink: 0;
+    animation: marquee-scroll 28s linear infinite;
+    font-family: var(--fu);
+    font-size: 0.68rem;
+    font-weight: 500;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--text-mid);
+}
+.marquee-wrap:hover .marquee-track { animation-play-state: paused; }
+.md { color: var(--gold); opacity: 0.5; }
+@keyframes marquee-scroll {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-100%); }
+}
+
+/* ─── 6: ODOMETER ────────────────────────────────────────────── */
+/* JS handles — no extra CSS needed */
+
+/* ─── 7: MAGNETIC CURSOR ─────────────────────────────────────── */
+#cursor {
+    position: fixed;
+    top: 0; left: 0;
+    pointer-events: none;
+    z-index: 9999;
+    transform: translate(-50%, -50%);
+    transition: transform 0.08s linear;
+}
+#cursor-ring {
+    width: 36px;
+    height: 36px;
+    border: 1.5px solid var(--gold);
+    border-radius: 50%;
+    opacity: 0.5;
+    transition: width 0.3s ease, height 0.3s ease, opacity 0.3s ease, transform 0.3s ease;
+}
+#cursor-dot {
+    position: absolute;
+    top: 50%; left: 50%;
+    width: 4px; height: 4px;
+    background: var(--gold);
+    border-radius: 50%;
+    transform: translate(-50%,-50%);
+    transition: transform 0.2s ease;
+}
+#cursor.hovering #cursor-ring {
+    width: 56px;
+    height: 56px;
+    opacity: 0.8;
+    border-color: var(--blue-m);
+}
+#cursor.hovering #cursor-dot {
+    transform: translate(-50%,-50%) scale(2);
+}
+/* Hide on touch/mobile */
+@media (hover: none) {
+    #cursor { display: none; }
+}
+
+/* ─── 8: SUN GLOW ────────────────────────────────────────────── */
+@keyframes sun-glow {
+    0%, 100% {
+        box-shadow:
+            0 0 0 3px  rgba(220,175,70,0.55),
+            0 0 0 10px rgba(190,150,55,0.28),
+            0 0 22px 8px  rgba(190,148,55,0.35),
+            0 0 55px 22px rgba(181,140,50,0.20),
+            0 0 95px 45px rgba(181,130,45,0.12),
+            0 0 160px 80px rgba(170,115,35,0.07);
+    }
+    50% {
+        box-shadow:
+            0 0 0 5px  rgba(240,190,70,0.70),
+            0 0 0 16px rgba(210,165,55,0.42),
+            0 0 35px 16px rgba(210,160,55,0.48),
+            0 0 80px 38px rgba(195,150,50,0.28),
+            0 0 130px 65px rgba(185,135,45,0.17),
+            0 0 210px 110px rgba(175,115,35,0.09);
+    }
+}
+@keyframes ring-expand {
+    0%   { transform: translate(-50%,-50%) scale(1);   opacity: 0.55; }
+    100% { transform: translate(-50%,-50%) scale(2.4); opacity: 0; }
+}
+@keyframes coin-fall {
+    0%   { transform: translateY(0) rotate(0deg);    opacity: 1; }
+    15%  { transform: translateY(-18px) rotate(8deg); opacity: 1; }
+    100% { transform: translateY(120vh) rotate(720deg); opacity: 0.3; }
+}
+@keyframes coin-rise {
+    0%   { transform: translateY(-260px) rotate(-30deg); opacity: 0; }
+    60%  { transform: translateY(12px) rotate(4deg);     opacity: 1; }
+    80%  { transform: translateY(-6px) rotate(-2deg);    opacity: 1; }
+    100% { transform: translateY(0) rotate(0deg);        opacity: 1; }
+}
+.logo-coin-wrap.falling { animation: coin-fall 1.1s cubic-bezier(.4,0,.8,1) forwards; pointer-events: none; }
+.logo-coin-wrap.rising  { animation: coin-rise 0.7s cubic-bezier(.2,.8,.4,1) forwards; }
+.logo-coin-wrap::before,
+.logo-coin-wrap::after {
+    content: '';
+    position: absolute;
+    top: 50%; left: 50%;
+    width: 180px; height: 180px;
+    border-radius: 50%;
+    border: 1.5px solid rgba(210,165,55,0.35);
+    pointer-events: none;
+    animation: ring-expand 3.2s ease-out infinite;
+}
+.logo-coin-wrap::after {
+    animation-delay: 1.6s;
+}
+.logo-coin {
+    animation: sun-glow 3s ease-in-out infinite;
+}
+
+/* ─── 9: INK REVEAL ─────────────────────────────────────────── */
+h2.fade, .hero h1.fade {
+    clip-path: inset(0 0 100% 0);
+    transition: opacity 0.1s, transform 0.1s, clip-path 0.85s cubic-bezier(0.65, 0, 0.35, 1);
+}
+h2.fade.in, .hero h1.fade.in {
+    clip-path: inset(0 0 0% 0);
+    opacity: 1;
+    transform: none;
+}
+
+/* ─── REDUCED MOTION ────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+    .fade { opacity: 1; transform: none; transition: none; }
+    .scroll-line { animation: none; opacity: 0.5; }
+    .logo-coin-wrap { will-change: auto; }
+}
+
+/* ─── MOBILE MENU ───────────────────────────────────────────── */
+@media (max-width: 680px) {
+    .nav-links {
+        display: none;
+        position: fixed;
+        top: 64px; left: 0; right: 0;
+        background: var(--bg);
+        flex-direction: column;
+        gap: 0;
+        padding: 1rem 0;
+        box-shadow: 0 8px 24px rgba(26,24,20,0.08);
+    }
+    nav.open .nav-links { display: flex; }
+    .nav-links li { width: 100%; }
+    .nav-links a {
+        display: block;
+        padding: 1rem 5vw;
+        font-size: 0.82rem;
+        opacity: 0.7;
+    }
+    .burger { display: flex; }
+
+    /* Hero mobile: centered, coin inline */
+    .hero {
+        align-items: center;
+        text-align: center;
+        padding: 120px 6vw 10vh;
+    }
+    .logo-coin-wrap {
+        top: 60px;
+        right: 3vw;
+    }
+    .hero h1 { font-size: clamp(3rem, 14vw, 5rem); }
+    .hero-eyebrow { justify-content: center; }
+    .hero-meta { justify-content: center; }
+    .hero-scroll-hint { left: 50%; transform: translateX(-50%); }
+
+    /* Sections */
+    section { padding: 80px 6vw; }
+    #sobre { padding: 100px 6vw; }
+    .contact { padding: 100px 6vw 120px; }
+
+    .sobre-layout {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+    }
+    .como-grid {
+        grid-template-columns: 1fr;
+    }
+    .como-card {
+        border-right: none;
+        border-bottom: 1px solid var(--border-gold);
+    }
+    .como-card:last-child { border-bottom: none; }
+    .foto-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .details-grid {
+        grid-template-columns: 1fr;
+    }
+    .detail-item {
+        padding: 2.2rem 0;
+        border-right: none;
+        border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+    .detail-item:last-child { border-bottom: none; }
+    .detail-item:first-child { padding-left: 0; }
+
+    .logo-coin { width: 140px; height: 140px; }
+}
+    </style>
+</head>
+<body>
+
+<!-- ─── NAV ─────────────────────────────────────────────────── -->
+<nav id="mainNav">
+    <a class="nav-brand" href="#">Ateneo Latin America</a>
+    <ul class="nav-links">
+        <li><a href="#sobre">Sobre</a></li>
+        <li><a href="#como">Sesiones</a></li>
+        <li><a href="#encuentro">Encuentro</a></li>
+        <li><a href="#contacto">Contacto</a></li>
+    </ul>
+    <button class="burger" id="burger" aria-label="Menu">
+        <span></span><span></span><span></span>
+    </button>
+</nav>
+
+<!-- ─── HERO ─────────────────────────────────────────────────── -->
+<section class="hero" id="hero">
+
+    <!-- BG PHOTO: положи файл в Politicaweb/hero-bg.jpg -->
+    <div class="hero-photo-bg" id="heroBgPhoto">
+        <img src="hero-bg.jpg" alt="">
+    </div>
+
+    <!-- Coin logo — absolute top-right desktop, inline mobile -->
+    <div class="logo-coin-wrap" id="logoCoinWrap">
+        <div class="logo-coin" id="logoCoin">
+            <div class="logo-coin-inner">
+                <img src="logo.svg" alt="Ateneo Latin America" class="logo-svg">
+            </div>
+        </div>
+    </div>
+
+    <div class="hero-text" id="heroText">
+        <h1 class="fade" id="heroH1"><span class="sl">Ateneo</span><br><em><span class="sl">Latin America</span></em></h1>
+        <p class="hero-eyebrow fade">Montevideo · 2026</p>
+        <div class="hero-meta fade">
+            <span>19 países</span>
+        </div>
+    </div>
+
+    <div class="hero-scroll-hint">
+        <div class="scroll-line"></div>
+        <span>Scroll</span>
+    </div>
+
+</section>
+
+<!-- ─── MARQUEE ──────────────────────────────────────────────── -->
+<div class="marquee-wrap" aria-hidden="true">
+    <div class="marquee-track">
+        <span>Argentina</span><span class="md">·</span>
+        <span>Bolivia</span><span class="md">·</span>
+        <span>Brasil</span><span class="md">·</span>
+        <span>Chile</span><span class="md">·</span>
+        <span>Colombia</span><span class="md">·</span>
+        <span>Cuba</span><span class="md">·</span>
+        <span>Ecuador</span><span class="md">·</span>
+        <span>México</span><span class="md">·</span>
+        <span>Paraguay</span><span class="md">·</span>
+        <span>Perú</span><span class="md">·</span>
+        <span>Uruguay</span><span class="md">·</span>
+        <span>Venezuela</span><span class="md">·</span>
+        <span>Panamá</span><span class="md">·</span>
+        <span>Costa Rica</span><span class="md">·</span>
+        <span>Honduras</span><span class="md">·</span>
+        <span>Guatemala</span><span class="md">·</span>
+        <span>El Salvador</span><span class="md">·</span>
+        <span>Nicaragua</span><span class="md">·</span>
+        <span>Rep. Dominicana</span><span class="md">·</span>
+    </div>
+    <div class="marquee-track" aria-hidden="true">
+        <span>Argentina</span><span class="md">·</span>
+        <span>Bolivia</span><span class="md">·</span>
+        <span>Brasil</span><span class="md">·</span>
+        <span>Chile</span><span class="md">·</span>
+        <span>Colombia</span><span class="md">·</span>
+        <span>Cuba</span><span class="md">·</span>
+        <span>Ecuador</span><span class="md">·</span>
+        <span>México</span><span class="md">·</span>
+        <span>Paraguay</span><span class="md">·</span>
+        <span>Perú</span><span class="md">·</span>
+        <span>Uruguay</span><span class="md">·</span>
+        <span>Venezuela</span><span class="md">·</span>
+        <span>Panamá</span><span class="md">·</span>
+        <span>Costa Rica</span><span class="md">·</span>
+        <span>Honduras</span><span class="md">·</span>
+        <span>Guatemala</span><span class="md">·</span>
+        <span>El Salvador</span><span class="md">·</span>
+        <span>Nicaragua</span><span class="md">·</span>
+        <span>Rep. Dominicana</span><span class="md">·</span>
+    </div>
+</div>
+
+<!-- ─── DETAILS ───────────────────────────────────────────────── -->
+<section class="details" id="encuentro">
+    <div class="section-inner">
+        <p class="eyebrow fade">El encuentro</p>
+        <h2 class="fade">Montevideo<br>2026</h2>
+        <div class="details-grid">
+            <div class="detail-item fade">
+                <div class="detail-number odometer" data-target="19" data-from="0">0</div>
+                <div class="detail-label">Países participantes</div>
+            </div>
+            <div class="detail-item fade">
+                <div class="detail-number odometer" data-target="2026" data-from="1990">1990</div>
+                <div class="detail-label">Año del encuentro</div>
+            </div>
+            <div class="detail-item fade">
+                <div class="detail-number odometer" data-target="2023" data-from="2020">2020</div>
+                <div class="detail-label">Año de fundación</div>
+            </div>
+        </div>
+        <p class="fade" style="margin-top:2.5rem;font-family:var(--fi);font-style:italic;font-size:clamp(1rem,1.4vw,1.25rem);color:var(--gold);opacity:0.85;letter-spacing:0.02em;">No es un evento. Es un punto de inflexión.</p>
+    </div>
+</section>
+
+<!-- ─── SOBRE ─────────────────────────────────────────────────── -->
+<section id="sobre">
+    <div class="section-inner">
+        <p class="eyebrow fade">¿Qué es el Ateneo?</p>
+        <h2 class="fade typewriter" id="sobreH2"><span class="tw">Conocernos.</span><br><span class="tw">Entendernos.</span><br><span class="tw">Querernos.</span></h2>
+        <div class="sobre-layout">
+            <div class="sobre-left">
+                <div class="sobre-pull fade">
+                    Una asociación<br>abierta a todas<br>las edades
+                </div>
+                <div class="sobre-img fade">
+                    <img src="mexico2.jpg" alt="América Latina">
+                </div>
+            </div>
+            <div class="sobre-body">
+                <p class="fade">
+                    Somos una asociación abierta a personas de todas las edades, profesiones
+                    e intereses, unidos por la curiosidad sobre América Latina: su historia,
+                    arte, gente y cultura.
+                </p>
+                <p class="fade">
+                    <em>Latinoamericano</em>: más allá del nombre panamericano o iberoamericano,
+                    ese es el concepto con el cual nos identificamos verdaderamente las personas
+                    que formamos parte de nuestros maravillosos países.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ─── CÓMO TRABAJAMOS ──────────────────────────────────────── -->
+<section id="como">
+    <div class="section-inner">
+        <p class="eyebrow fade">¿Cómo trabajamos?</p>
+        <h2 class="fade">Cada sesión<br>combina tres<br>momentos</h2>
+        <div class="como-grid">
+            <div class="como-card fade">
+                <div class="como-num">01</div>
+                <div class="como-title">Tema principal</div>
+                <p class="como-desc">
+                    Una temática de relevancia histórica, social o cultural,
+                    enmarcada en el programa anual — debatida de forma horizontal y fraterna.
+                </p>
+            </div>
+            <div class="como-card fade">
+                <div class="como-num">02</div>
+                <div class="como-title">Introducción biográfica</div>
+                <p class="como-desc">
+                    La presentación de un personaje latinoamericano que vale la pena conocer.
+                    Historia, legado, contexto.
+                </p>
+            </div>
+            <div class="como-card fade">
+                <div class="como-num">03</div>
+                <div class="como-title">Cierre cultural</div>
+                <p class="como-desc">
+                    Música, literatura, gastronomía u otra expresión cultural de la región.
+                    El encuentro termina donde la cultura vive.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ─── FEATURE PHOTO ────────────────────────────────────────── -->
+<div class="feature-photo" id="fotoPrincipal" style="background:#0d2a4a;overflow:hidden;">
+    <canvas id="geoCanvas" style="position:absolute;inset:0;width:100%;height:100%;"></canvas>
+    <div style="position:relative;z-index:2;text-align:center;pointer-events:none;padding:1rem;">
+        <svg width="48" height="48" viewBox="0 0 48 48" fill="none" style="opacity:0.22;margin-bottom:0.6rem;">
+            <circle cx="24" cy="24" r="22" stroke="#d4b483" stroke-width="1"/>
+            <circle cx="24" cy="24" r="14" stroke="#d4b483" stroke-width="0.5" stroke-dasharray="3 4"/>
+            <line x1="2" y1="24" x2="46" y2="24" stroke="#d4b483" stroke-width="0.5"/>
+            <line x1="24" y1="2" x2="24" y2="46" stroke="#d4b483" stroke-width="0.5"/>
+        </svg>
+        <p style="font-family:var(--fu);font-size:0.6rem;letter-spacing:0.22em;color:#d4b483;opacity:0.45;text-transform:uppercase;">América Latina · 2026</p>
+    </div>
+</div>
+
+<!-- ─── FOTOS ─────────────────────────────────────────────────── -->
+<section id="fotos">
+    <div class="foto-grid">
+        <div class="foto-item"><img src="photosection/photo1.jpeg" alt="Ateneo Latinoamericano" class="lightbox-trigger" data-src="photosection/photo1.jpeg"></div>
+        <div class="foto-item"><img src="photosection/photo2.jpeg" alt="Ateneo Latinoamericano" class="lightbox-trigger" data-src="photosection/photo2.jpeg"></div>
+        <div class="foto-item"><img src="photosection/photo3.jpeg" alt="Ateneo Latinoamericano" class="lightbox-trigger" data-src="photosection/photo3.jpeg"></div>
+        <div class="foto-item"><img src="photosection/photo4.jpeg" alt="Ateneo Latinoamericano" class="lightbox-trigger" data-src="photosection/photo4.jpeg"></div>
+        <div class="foto-item"><img src="photosection/photo5.jpeg" alt="Ateneo Latinoamericano" class="lightbox-trigger" data-src="photosection/photo5.jpeg"></div>
+        <div class="foto-item"><img src="photosection/photo6.jpeg" alt="Ateneo Latinoamericano" class="lightbox-trigger" data-src="photosection/photo6.jpeg"></div>
+    </div>
+</section>
+
+<!-- ─── LIGHTBOX ──────────────────────────────────────────────── -->
+<div id="lightbox" style="display:none;position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,0.92);cursor:zoom-out;align-items:center;justify-content:center;">
+    <img id="lightbox-img" src="" alt="" style="max-width:92vw;max-height:92vh;object-fit:contain;border-radius:2px;box-shadow:0 8px 60px rgba(0,0,0,0.6);">
+    <button id="lightbox-close" style="position:absolute;top:20px;right:28px;background:none;border:none;color:#fff;font-size:2rem;cursor:pointer;line-height:1;opacity:0.7;">&#x2715;</button>
+</div>
+
+<!-- ─── CONTACT ───────────────────────────────────────────────── -->
+<section id="contacto" class="contact">
+    <div class="section-inner">
+        <p class="eyebrow fade" style="justify-content:center;">Acceso</p>
+        <h2 class="fade">Libertad.<br>La elección<br>es tuya.</h2>
+        <p class="contact-sub fade">
+            El Ateneo crece de encuentro en encuentro,<br>
+            de persona en persona.
+        </p>
+        <p class="invite-note fade">
+            Si llegaste hasta aquí, ya sabes cómo encontrarnos.
+        </p>
+        <p class="contact-social fade">
+            <a href="https://www.instagram.com/ateneolatinoamericano/" target="_blank" rel="noopener">
+                @ateneolatinoamericano
+            </a>
+        </p>
+    </div>
+</section>
+
+<!-- ─── FOOTER ────────────────────────────────────────────────── -->
+<footer>
+    <div class="footer-ornament">
+        <span class="footer-rule"></span>
+        <span class="footer-sun">✦</span>
+        <span class="footer-rule"></span>
+    </div>
+    <p class="footer-main"><span>Ateneo Latin America</span> &nbsp;·&nbsp; Montevideo 2026</p>
+    <p class="footer-sub">Est. 2023 &nbsp;◆&nbsp; América Latina</p>
+</footer>
+
+<!-- ─── CURSOR ───────────────────────────────────────────────── -->
+<div id="cursor" aria-hidden="true">
+    <div id="cursor-ring"></div>
+    <div id="cursor-dot"></div>
+</div>
+
+<!-- ─── SCRIPTS ───────────────────────────────────────────────── -->
+<script>
+(function () {
+    const nav    = document.getElementById('mainNav');
+    const burger = document.getElementById('burger');
+    const coin   = document.getElementById('logoCoin');
+    const hero   = document.getElementById('hero');
+    const RM     = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const TOUCH  = window.matchMedia('(hover: none)').matches;
+
+    // ── Nav + coin on scroll ────────────────────────────────────
+    window.addEventListener('scroll', onScroll, { passive: true });
+
+    function onScroll() {
+        nav.classList.toggle('scrolled', window.scrollY > 40);
+        animateCoin();
+        // 4: Parallax drift on "curiosos" em
+        if (!RM) {
+            const em = document.querySelector('.hero h1 em');
+            if (em) {
+                const drift = Math.min(window.scrollY * 0.07, 36);
+                em.style.transform = `translateX(${drift}px)`;
+            }
+        }
+    }
+
+    // ── Mobile menu ─────────────────────────────────────────────
+    burger.addEventListener('click', () => nav.classList.toggle('open'));
+    document.querySelectorAll('.nav-links a').forEach(a =>
+        a.addEventListener('click', () => nav.classList.remove('open'))
+    );
+
+    // ── Coin bounce (existing) ───────────────────────────────────
+    function animateCoin() {
+        if (window.innerWidth <= 680 || RM) return;
+        const s = window.scrollY, heroH = hero.offsetHeight;
+        const toss = heroH * 0.38, land = heroH * 0.85;
+        if (s <= 0) {
+            coin.style.transform = 'translateY(0) scaleY(1) rotate(0deg)';
+        } else if (s < toss) {
+            const p = s / toss, e = p * (2 - p);
+            coin.style.transform = `translateY(${-e*200}px) scaleY(${1-Math.sin(p*Math.PI)*0.32}) rotate(${e*6}deg)`;
+        } else if (s < land) {
+            const p = (s - toss) / (land - toss);
+            coin.style.transform = `translateY(${Math.pow(1-p,2)*Math.cos(p*Math.PI*2.5)*-200}px) scaleY(1) rotate(0deg)`;
+        } else {
+            coin.style.transform = 'translateY(0) scaleY(1) rotate(0deg)';
+        }
+    }
+
+    // ── 1+2: Text scramble + staggered reveal on h1 ─────────────
+    function initScramble() {
+        if (RM) return;
+        const CHARS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+        document.querySelectorAll('.sl').forEach((span, lineIdx) => {
+            const target = span.textContent;
+            let frame = 0;
+            const total = target.length * 7;
+            span.textContent = target.split('').map(c =>
+                c === ' ' ? ' ' : CHARS[Math.floor(Math.random()*CHARS.length)]
+            ).join('');
+
+            setTimeout(() => {
+                const id = setInterval(() => {
+                    span.textContent = target.split('').map((c, i) => {
+                        if (c === ' ') return ' ';
+                        if (i < Math.floor(frame / 7)) return c;
+                        return CHARS[Math.floor(Math.random()*CHARS.length)];
+                    }).join('');
+                    if (++frame > total) { clearInterval(id); span.textContent = target; }
+                }, 28);
+            }, lineIdx * 180 + 300);   // stagger: 300ms, 480ms, 660ms
+        });
+    }
+
+    // ── 3: Typewriter on sobre h2 ───────────────────────────────
+    function runTypewriter(h2) {
+        if (RM) { h2.classList.add('in'); return; }
+        h2.classList.add('in');   // reveal wrapper (ink-reveal)
+        const spans = h2.querySelectorAll('.tw');
+        let lineIdx = 0;
+
+        function typeLine(span, onDone) {
+            const text = span.dataset.text || span.textContent;
+            span.dataset.text = text;
+            span.textContent = '';
+            span.style.width = 'auto';
+            span.classList.add('active');
+            let i = 0;
+            const id = setInterval(() => {
+                span.textContent = text.slice(0, ++i);
+                if (i >= text.length) {
+                    clearInterval(id);
+                    span.classList.remove('active');
+                    span.classList.add('done');
+                    setTimeout(onDone, 260);
+                }
+            }, 55);
+        }
+
+        function next() {
+            if (lineIdx >= spans.length) return;
+            typeLine(spans[lineIdx++], next);
+        }
+        setTimeout(next, 200);
+    }
+
+    // ── 6: Odometer counter ─────────────────────────────────────
+    function runOdometer(el) {
+        if (RM) { el.textContent = el.dataset.target; el.classList.add('in'); return; }
+        el.classList.add('in');
+        const from = parseInt(el.dataset.from, 10);
+        const to   = parseInt(el.dataset.target, 10);
+        const dur  = 1600;
+        const start = performance.now();
+        function tick(now) {
+            const p = Math.min((now - start) / dur, 1);
+            const eased = 1 - Math.pow(1 - p, 3);  // ease-out cubic
+            el.textContent = Math.round(from + (to - from) * eased);
+            if (p < 1) requestAnimationFrame(tick);
+            else el.textContent = to;
+        }
+        requestAnimationFrame(tick);
+    }
+
+    // ── 7: Magnetic cursor ──────────────────────────────────────
+    function initCursor() {
+        if (TOUCH) return;
+        const cursor = document.getElementById('cursor');
+        if (!cursor) return;
+        cursor.style.display = 'block';
+
+        let cx = -100, cy = -100;
+        document.addEventListener('mousemove', e => {
+            cx = e.clientX; cy = e.clientY;
+            cursor.style.transform = `translate(${cx}px, ${cy}px)`;
+        });
+
+        const magnets = document.querySelectorAll('a, button, .logo-coin, .como-card');
+        magnets.forEach(el => {
+            el.addEventListener('mouseenter', () => cursor.classList.add('hovering'));
+            el.addEventListener('mouseleave', () => {
+                cursor.classList.remove('hovering');
+                el.style.transform = '';
+            });
+            el.addEventListener('mousemove', e => {
+                const r = el.getBoundingClientRect();
+                const dx = (e.clientX - (r.left + r.width/2)) * 0.25;
+                const dy = (e.clientY - (r.top  + r.height/2)) * 0.25;
+                // Only apply magnetic pull to small targets
+                if (r.width < 400) el.style.transform = `translate(${dx}px,${dy}px)`;
+            });
+        });
+    }
+
+    // ── IntersectionObserver (fade + typewriter + odometer) ──────
+    const io = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+            if (!e.isIntersecting) return;
+            const el = e.target;
+            if (el.classList.contains('typewriter')) {
+                runTypewriter(el);
+            } else if (el.classList.contains('odometer')) {
+                runOdometer(el);
+            } else {
+                el.classList.add('in');
+            }
+            io.unobserve(el);
+        });
+    }, { threshold: 0.12, rootMargin: '0px 0px -30px 0px' });
+
+    document.querySelectorAll('.fade, .odometer').forEach(el => io.observe(el));
+    // Guarantee hero elements visible on load (IO may fire after screenshot/paint)
+    setTimeout(() => {
+        document.querySelectorAll('.hero .fade').forEach(el => el.classList.add('in'));
+    }, 80);
+
+    // init
+    onScroll();
+    initScramble();
+    initCursor();
+    // Pre-hide typewriter spans until triggered
+    document.querySelectorAll('.tw').forEach(span => {
+        const t = span.textContent;
+        span.dataset.text = t;
+        span.textContent = '';
+        span.style.width = '0';
+    });
+
+    // Lightbox
+    const lb = document.getElementById('lightbox');
+    const lbImg = document.getElementById('lightbox-img');
+    function openLightbox(src) {
+        lbImg.src = src;
+        lb.style.display = 'flex';
+        document.body.style.overflow = 'hidden';
+    }
+    function closeLightbox() {
+        lb.style.display = 'none';
+        lbImg.src = '';
+        document.body.style.overflow = '';
+    }
+    document.querySelectorAll('.lightbox-trigger').forEach(img => {
+        img.style.cursor = 'zoom-in';
+        img.addEventListener('click', () => openLightbox(img.dataset.src));
+    });
+    document.getElementById('lightbox-close').addEventListener('click', closeLightbox);
+    lb.addEventListener('click', e => { if (e.target === lb) closeLightbox(); });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+
+    // Geometric canvas animation
+    (function() {
+        const canvas = document.getElementById('geoCanvas');
+        if (!canvas) return;
+        const ctx = canvas.getContext('2d');
+        const GOLD = '#b5945a';
+        const GOLD_L = '#d4b483';
+        let W, H, nodes;
+        const N = 38;
+        const MAX_DIST = 160;
+
+        function resize() {
+            W = canvas.width  = canvas.offsetWidth;
+            H = canvas.height = canvas.offsetHeight;
+        }
+
+        function initNodes() {
+            nodes = Array.from({ length: N }, () => ({
+                x: Math.random() * W, y: Math.random() * H,
+                vx: (Math.random() - 0.5) * 0.35,
+                vy: (Math.random() - 0.5) * 0.35,
+                r: Math.random() * 1.8 + 0.8,
+                pulse: Math.random() * Math.PI * 2
+            }));
+        }
+
+        function draw(t) {
+            ctx.clearRect(0, 0, W, H);
+
+            // Diagonal rule lines
+            ctx.save();
+            ctx.strokeStyle = 'rgba(181,148,90,0.06)';
+            ctx.lineWidth = 1;
+            for (let i = -H; i < W + H; i += 90) {
+                ctx.beginPath(); ctx.moveTo(i, 0); ctx.lineTo(i + H, H); ctx.stroke();
+            }
+            ctx.restore();
+
+            // Edges
+            for (let i = 0; i < N; i++) {
+                for (let j = i + 1; j < N; j++) {
+                    const dx = nodes[i].x - nodes[j].x;
+                    const dy = nodes[i].y - nodes[j].y;
+                    const d = Math.sqrt(dx * dx + dy * dy);
+                    if (d < MAX_DIST) {
+                        const alpha = (1 - d / MAX_DIST) * 0.28;
+                        ctx.strokeStyle = `rgba(181,148,90,${alpha})`;
+                        ctx.lineWidth = 0.7;
+                        ctx.beginPath();
+                        ctx.moveTo(nodes[i].x, nodes[i].y);
+                        ctx.lineTo(nodes[j].x, nodes[j].y);
+                        ctx.stroke();
+                    }
+                }
+            }
+
+            // Nodes
+            nodes.forEach(n => {
+                n.pulse += 0.018;
+                const glow = (Math.sin(n.pulse) + 1) / 2;
+                const alpha = 0.3 + glow * 0.55;
+                ctx.beginPath();
+                ctx.arc(n.x, n.y, n.r + glow * 0.8, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(212,180,131,${alpha})`;
+                ctx.fill();
+
+                // Update position
+                n.x += n.vx; n.y += n.vy;
+                if (n.x < 0 || n.x > W) n.vx *= -1;
+                if (n.y < 0 || n.y > H) n.vy *= -1;
+            });
+        }
+
+        let raf;
+        function loop(t) { draw(t); raf = requestAnimationFrame(loop); }
+
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(e => {
+                if (e.isIntersecting) { if (!raf) loop(0); }
+                else { cancelAnimationFrame(raf); raf = null; }
+            });
+        });
+
+        resize();
+        initNodes();
+        observer.observe(canvas);
+        window.addEventListener('resize', () => { resize(); initNodes(); });
+    })();
+
+    // Easter egg: 10 clicks on logo → coin falls, returns after 5s
+    const coinWrap = document.getElementById('logoCoinWrap');
+    let coinClicks = 0;
+    let coinBusy = false;
+    coinWrap.addEventListener('click', () => {
+        if (coinBusy) return;
+        coinClicks++;
+        if (coinClicks >= 10) {
+            coinClicks = 0;
+            coinBusy = true;
+            coinWrap.classList.remove('rising');
+            coinWrap.classList.add('falling');
+            setTimeout(() => {
+                coinWrap.style.visibility = 'hidden';
+                coinWrap.classList.remove('falling');
+                setTimeout(() => {
+                    coinWrap.style.visibility = '';
+                    coinWrap.classList.add('rising');
+                    coinWrap.addEventListener('animationend', () => {
+                        coinWrap.classList.remove('rising');
+                        coinBusy = false;
+                    }, { once: true });
+                }, 5000);
+            }, 1100);
+        }
+    });
+})();
+</script>
+</body>
+</html>
